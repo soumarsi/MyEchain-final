@@ -66,7 +66,7 @@
     locktxt=[[UITextField alloc]initWithFrame:CGRectMake(10,20 , 280, 40)];
     locktxt.backgroundColor=[UIColor whiteColor];
     locktxt.delegate=self;
-    //passwrdtxt.text=@"123456";
+
     locktxt.font= [UIFont systemFontOfSize:16];
     locktxt.placeholder=@"Lock key";
     UIColor *passcolor = [UIColor grayColor];
@@ -79,7 +79,6 @@
     savebtn=[[UIButton alloc]initWithFrame:CGRectMake(10, locktxt.frame.origin.y+locktxt.frame.size.height+10, 280, 30)];
     savebtn.backgroundColor=[UIColor whiteColor];
     [savebtn setTitle:@"Process" forState:UIControlStateNormal];
-    //     [registerbtn setBackgroundImage:[UIImage imageNamed:@"register-nownew.png"] forState:UIControlStateNormal];
     savebtn.titleLabel.textColor=[UIColor blackColor];
     [savebtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [savebtn  addTarget:self action:@selector(savelock) forControlEvents:UIControlEventTouchUpInside];
@@ -88,26 +87,18 @@
     cancelbtn=[[UIButton alloc]initWithFrame:CGRectMake(10, savebtn.frame.origin.y+savebtn.frame.size.height+10, 280, 30)];
     cancelbtn.backgroundColor=[UIColor whiteColor];
     [cancelbtn setTitle:@"Cancel" forState:UIControlStateNormal];
-    //     [registerbtn setBackgroundImage:[UIImage imageNamed:@"register-nownew.png"] forState:UIControlStateNormal];
     cancelbtn.titleLabel.textColor=[UIColor blackColor];
     [cancelbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cancelbtn  addTarget:self action:@selector(cancellock) forControlEvents:UIControlEventTouchUpInside];
     [lockview addSubview:cancelbtn];
 
-  // [self urlfetch];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
     
-    //checking if remember me is clicked and username and password field not null
-    
-    //to stop sliding view
-    
-//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-//        self.navigationController.interactivePopGestureRecognizer.enabled=NO;
-//    }
+
     
     footerview = [[QTfooterTab alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height-98/2, 320.0f,98/2)];
     [footerview.home setSelected:YES];
