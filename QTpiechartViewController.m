@@ -79,18 +79,18 @@
     NSLog(@"dataurl is %@",redm_dict);
     
     
-//    if ([[redm_dict objectForKey:@"redeem_value"]intValue] == 0 && [[redm_dict objectForKey:@"buy_count"]intValue] == 0)
-//    {
-//        
-//    }
-//    else
-//    {
+    if ([[redm_dict objectForKey:@"redeem_value"]intValue] == 0 && [[redm_dict objectForKey:@"buy_count"]intValue] == 0)
+    {
+        
+    }
+    else
+    {
     opesnumber=[[redm_dict objectForKey:@"redeem_value"]intValue]-[[redm_dict objectForKey:@"buy_count"]intValue];
     
     resnumber=[[redm_dict objectForKey:@"buy_count"]intValue];
     percnt=(([[redm_dict objectForKey:@"buy_count"]intValue])*100)/[[redm_dict objectForKey:@"redeem_value"]intValue];
     
-    //}
+   }
     NSLog(@"percentttt==%d",percnt);
     
     //    opesnumber=1;

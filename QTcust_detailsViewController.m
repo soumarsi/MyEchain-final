@@ -95,7 +95,6 @@
     
     NSString *url2 = [NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/Iosapp/cust_form_details.php?user_id=%@&company_id=%@",userid,card_id];
     
-    
     NSLog(@"url2===%@",url2);
     
     //fetching data returning from url to the array
