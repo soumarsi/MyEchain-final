@@ -53,10 +53,7 @@
                 
             } else if([[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"]) {
                 
-                
-                
                 [locationManager  requestWhenInUseAuthorization];
-                
                 
                 
             } else {
@@ -303,7 +300,7 @@
     
 
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
-    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 1000, 1000)];
+    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
     [map_View setRegion:adjustedRegion animated:YES];
     //  [self.imagegif removeFromSuperview];
     //[spinerview removeFromSuperview];
