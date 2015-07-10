@@ -289,7 +289,7 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
        
         
-        NSLog(@"detailsarraycount----- :%lu",(unsigned long)DetailsArray.count);
+        NSLog(@"detailsarraycount----- :%@",DetailsArray);
         
         int i;
         
@@ -897,9 +897,7 @@
                         
                         QRno.text=[[DetailsArray objectAtIndex:i] objectForKey:@"phone"];
                         
-                        UITapGestureRecognizer *phn_tap= [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                          
-                                                                                                 action:@selector(callno)];
+                        UITapGestureRecognizer *phn_tap= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callno)];
                         
                         phn_tap.numberOfTapsRequired=1;
                         
@@ -1497,15 +1495,18 @@
 {
     
     
-  
-    NSLog(@"in call====%@",[card_dict objectForKey:@"phone"] );
-    NSString *telurl;
-    telurl = [NSString stringWithFormat:@"tel://%@",[card_dict objectForKey:@"phone"]];
-    NSLog(@"in call%@",telurl);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telurl]];
+    UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Would you like to call %@",[[DetailsArray objectAtIndex:0]objectForKey:@"phone"]] delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Call", nil];
+    alertview.tag = 1;
+    
+    [alertview show];
+//  
+//    NSLog(@"in call====%@",[card_dict objectForKey:@"phone"] );
+
     
     
 }
+
+
 -(void)cust_info:(UIButton *)sender
 {
 
@@ -1937,12 +1938,22 @@
 -(void)share
 {
     
-    UIImage *yourImage=cardimg.image;
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:[NSString stringWithFormat:@"I just used my #%@ card with #MyEChain loyalty & rewards card App http://bit.ly/uNox4s",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]],yourImage, nil] applicationActivities:nil];
-    activityVC.excludedActivityTypes = @[ UIActivityTypeMessage ,UIActivityTypeSaveToCameraRoll];
+//    UIImage *yourImage=cardimg.image;
+//    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:[NSString stringWithFormat:@"I just used my #%@ card with #MyEChain loyalty & rewards card App http://bit.ly/uNox4s",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]],yourImage, nil] applicationActivities:nil];
+//    activityVC.excludedActivityTypes = @[ UIActivityTypeMessage ,UIActivityTypeSaveToCameraRoll];
+//    
+//    [self presentViewController:activityVC animated:YES completion:nil];
     
     
-    [self presentViewController:activityVC animated:YES completion:nil];
+
+    UIImage *imagesh = cardimg.image;
+    
+    NSString *textToShare = [NSString stringWithFormat:@"I just used my #%@ card with #MyEChain loyalty & rewards card App http://bit.ly/uNox4s",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]];
+ 
+    NSArray *objectsToShare = @[textToShare, imagesh];
+    
+    activityView = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    [self presentViewController:activityView animated:YES completion:nil];
     
     
 }
@@ -2212,11 +2223,23 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  
+    if (alertView.tag == 1)
+    {
+        if (buttonIndex == 0)
+        {
+            NSString *telurl;
+            telurl = [NSString stringWithFormat:@"tel://%@",[[DetailsArray objectAtIndex:0]objectForKey:@"phone"]];
+            NSLog(@"in call%@",telurl);
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telurl]];
+        }
+
+    }
+    else
+    {
     [webView setHidden:YES];
     [activityIndicator stopAnimating];
     [activityIndicator setHidden:YES];
- 
+    }
 }
 -(void)dealfn:(UIButton *)sender
 {
@@ -2325,6 +2348,7 @@
     
     if ([[DetailsArray objectAtIndex:sender.tag] objectForKey:@"twitter"]==[NSNull null]) {
         UIAlertView *alrt=[[UIAlertView alloc]initWithTitle:@"This webpage is not available" message:@"unable to find and load the requested webpage" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        alert.tag= 0;
         [alrt show];
     }
     else

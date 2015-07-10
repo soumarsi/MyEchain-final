@@ -34,6 +34,7 @@
     UIWebView *cmpnyweb;
     UIImageView *cardimg,*editcrdimg;
     UIView *pages_view;
+    UIActivityViewController *activityView;
     UIActivityIndicatorView *activityIndicator;
     UIWebView *webView;
     UIAlertView *alert;
