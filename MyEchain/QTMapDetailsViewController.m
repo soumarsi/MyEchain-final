@@ -89,8 +89,7 @@
         
         if(_detailsarray.count != 0)
         {
-            
-            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=10000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=4000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             NSLog(@"urlstring----> %@", urlString);
             
@@ -126,8 +125,7 @@
                         [self.LocationArray addObject:locationdictionary];
                         
                     }
-                    
-                    //   NSLog(@"locationdict----------> %@", LocationArray);
+
                 }
                 else
                 {
@@ -297,12 +295,10 @@
 
     };
     
-    
-
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
-    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 200, 200)];
+    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 3000,3000)];
     [map_View setRegion:adjustedRegion animated:YES];
-    //  [self.imagegif removeFromSuperview];
+    //[self.imagegif removeFromSuperview];
     //[spinerview removeFromSuperview];
     
     return locarryret;
@@ -319,7 +315,6 @@
         [((NSObject<JPSThumbnailAnnotationViewProtocol> *)view) didDeselectAnnotationViewInMap:mapView];
     }
 }
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation conformsToProtocol:@protocol(JPSThumbnailAnnotationProtocol)]) {
         return [((NSObject<JPSThumbnailAnnotationProtocol> *)annotation) annotationViewInMap:mapView];

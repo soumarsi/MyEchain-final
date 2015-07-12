@@ -169,8 +169,7 @@ if ([[NSUserDefaults standardUserDefaults] objectForKey:@"id"]!=nil) {
             
             RootViewController *home=[[RootViewController alloc]init];
             [self.navigationController pushViewController:home animated:NO];
-            
-            
+  
             
         }
 
