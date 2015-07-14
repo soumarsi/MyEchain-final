@@ -2596,6 +2596,8 @@
         
         self.latitude=  currentLocation.coordinate.latitude;
         self.longitude=  currentLocation.coordinate.longitude;
+        
+
     }
     
     // this creates a MKReverseGeocoder to find a placemark using the found coordinates

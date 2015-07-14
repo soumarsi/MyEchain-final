@@ -89,9 +89,9 @@
         
         if(_detailsarray.count != 0)
         {
-            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+           NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-          //  NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=sheetz&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4"];
+        //   NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             NSLog(@"urlstring----> %@", urlString);
             
@@ -291,7 +291,7 @@
     };
     
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
-    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 5000,5000)];
+    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 26000,26000)];
     [map_View setRegion:adjustedRegion animated:YES];
 
     
