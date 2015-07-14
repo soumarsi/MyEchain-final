@@ -89,7 +89,9 @@
         
         if(_detailsarray.count != 0)
         {
-            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=4000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+          //  NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=sheetz&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4"];
             
             NSLog(@"urlstring----> %@", urlString);
             
@@ -277,14 +279,7 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url3];
             [gwebView loadRequest:requestObj];
             
-            //            QTMapDetailsViewController *MapDetails = [[QTMapDetailsViewController alloc]init];
-            //            [MapDetails setCurrentlocationlat:self.latitude];
-            //            [MapDetails setCurrentlocationlong:self.longitude];
-            //            [MapDetails setDestinationlat:[[[LocationArray objectAtIndex:i] objectForKey:@"latitude"] floatValue]];
-            //            [MapDetails setDestinationlong:[[[LocationArray objectAtIndex:i] objectForKey:@"longitude"] floatValue]];
-            //            [MapDetails setAddress:[[LocationArray objectAtIndex:i] objectForKey:@"address"]];
-            //            [self presentViewController:MapDetails animated:YES completion:nil];
-            
+                     
         };
         
         empire.disclosureBlock = ^{
@@ -296,10 +291,9 @@
     };
     
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
-    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 3000,3000)];
+    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 5000,5000)];
     [map_View setRegion:adjustedRegion animated:YES];
-    //[self.imagegif removeFromSuperview];
-    //[spinerview removeFromSuperview];
+
     
     return locarryret;
 }

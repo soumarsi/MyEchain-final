@@ -1399,37 +1399,6 @@
 
     //*******end mapview
     
-    
-    //     if ([card_dict objectForKey:@"lat"]!=[NSNull null] && [card_dict objectForKey:@"long"]!=[NSNull null]) {
-    //    CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake([[card_dict objectForKey:@"lat"]floatValue], [[card_dict objectForKey:@"long"]floatValue]);
-    //    MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 1000, 1000)];
-    //    [map_View setRegion:adjustedRegion animated:YES];
-    //     }
-    //
-    //
-    //
-    //    NSLog(@"lattttt==%@",[card_dict objectForKey:@"lat"]);
-    //     NSLog(@"longtttt==%@",[card_dict objectForKey:@"long"]);
-    //
-    //        myAnnotation = [[MKPointAnnotation alloc] init];
-    //    if ([card_dict objectForKey:@"lat"]!=[NSNull null] && [card_dict objectForKey:@"long"]!=[NSNull null]) {
-    //myAnnotation.coordinate = CLLocationCoordinate2DMake([[card_dict objectForKey:@"lat"]floatValue], [[card_dict objectForKey:@"long"]floatValue]);
-    //    }
-    //    else
-    //    {
-    //
-    //         myAnnotation.coordinate = CLLocationCoordinate2DMake(0, 0);
-    //
-    //    }
-    //        myAnnotation.title=[NSString stringWithFormat:@"%@",[card_dict objectForKey:@"name"]];
-    //        // myAnnotation.subtitle= [[newarr4 objectAtIndex:i]objectForKey:@"id"];
-    //
-    //        [map_View addAnnotation:myAnnotation];
-    
-    
-    
-    
-    
 
     MainQueue = [[NSOperationQueue alloc]init];
     [MainQueue addOperationWithBlock:^{
@@ -1475,8 +1444,6 @@
                     [LocationArray addObject:locationdictionary];
                     
                 }
-                
-             //   NSLog(@"locationdict----------> %@", LocationArray);
             }
             else
             {
@@ -1495,15 +1462,10 @@
 {
     
     
-    UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Would you like to call %@",[[DetailsArray objectAtIndex:0]objectForKey:@"phone"]] delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Call", nil];
+    UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Would you like to call %@ ?",[[DetailsArray objectAtIndex:0]objectForKey:@"phone"]] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Call", nil];
     alertview.tag = 1;
     
     [alertview show];
-//  
-//    NSLog(@"in call====%@",[card_dict objectForKey:@"phone"] );
-
-    
-    
 }
 
 
@@ -2225,7 +2187,7 @@
 {
     if (alertView.tag == 1)
     {
-        if (buttonIndex == 0)
+        if (buttonIndex == 1)
         {
             NSString *telurl;
             telurl = [NSString stringWithFormat:@"tel://%@",[[DetailsArray objectAtIndex:0]objectForKey:@"phone"]];
