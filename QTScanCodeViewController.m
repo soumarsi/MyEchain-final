@@ -421,7 +421,7 @@
     headview.userInteractionEnabled=YES;
     [headview addGestureRecognizer:addtap];
     
-    UIImageView *scanbar=[[UIImageView alloc]initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height-97/2, 320.0f,98/2)];
+    scanbar=[[UIImageView alloc]initWithFrame:CGRectMake(0, [[UIScreen mainScreen]bounds].size.height-97/2, 320.0f,98/2)];
     scanbar.image=[UIImage imageNamed:@"scanbar"];
     scanbar.userInteractionEnabled=YES;
     [self.view addSubview:scanbar];
@@ -1219,6 +1219,8 @@
         
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"scantap"])
     {
+        
+        
         NSLog(@"loconotext............. :%@",locnotxt.text);
     
         urlString1 = [NSString stringWithFormat:@"%@new_card_details.php?user_id=%@&company_name=%@&barcode_type=%@&code_data=%@&card_number=%@&owner_name=%@",APPS_DOMAIN_URL,userid,[cmptxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[sel_code.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[codetxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[locnotxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[CardOwnerName.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -1531,34 +1533,27 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url2];
             [webView loadRequest:requestObj];
             [inapp_webview addSubview:webView];
-
-            
-            
-            
-//            urlbtn.titleLabel.textColor=[UIColor blackColor];
-//            [urlbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [urlbtn  addTarget:self action:@selector(weburl) forControlEvents:UIControlEventTouchUpInside];
         
         }
         else
         {
             
-            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Please scan it from MyEchain business app"] message:scannedCode delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//                        [alert show];
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Please scan it from MyEchain business app"] message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"This is not a MyEchain Business card"] message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [alert show];
 
+            sendCode=[NSString stringWithFormat:@"%@",scannedCode];
+            sendcodetype=[NSString stringWithFormat:@"%@", [scannerView humanReadableCodeTypeForCode:codeType]];
+//            [scannerView setHidden:YES];
+//            [BackGroundView setHidden:YES];
+//            [scanbar setHidden:YES];
+//            [headview setHidden:YES];
+            sel_code.text = @"";
+            sel_code.text =sendcodetype;
+            codetxt.text = @"";
+            codetxt.text = scannedCode;
             
-            
-//            urlbtn.titleLabel.textColor=[UIColor grayColor];
-//            [urlbtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//             [urlbtn  addTarget:self action:@selector(noweburl) forControlEvents:UIControlEventTouchUpInside];
-            
-            
+            [editview setHidden:NO];
         }
-
         
        timescan.text=[NSString stringWithFormat:@"%@",dateInStringFormated];
                 
@@ -1568,6 +1563,9 @@
          sendCode=[NSString stringWithFormat:@"%@",scannedCode];
         
        //******
+        
+        
+        NSLog(@"-=-=-= %@-=-=-=%@-=-=-=%@-=-=-=-=-",scannedCode,[scannerView humanReadableCodeTypeForCode:codeType],dateInStringFormated);
         
         
     }

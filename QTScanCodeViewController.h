@@ -21,7 +21,7 @@
 {
      UIView *mainview,*headview;
       UIButton *Scan;
-    
+    UIImageView *scanbar;
     RMScannerView *scannerView;
     UILabel *statusText;
     UILabel *scan_lbl;

@@ -76,7 +76,7 @@
     [MySearchBar setBackgroundColor:[UIColor clearColor]];
     [MySearchBar setDelegate:self];
    // MySearchBar.barTintColor = [UIColor colorWithRed:(141/255.0f) green:(171/255.0f) blue:(217/255.0f) alpha:1];
-MySearchBar.barTintColor = [UIColor whiteColor];
+  MySearchBar.barTintColor = [UIColor whiteColor];
     //    [userSearch sizeToFit];
     [mainview addSubview:MySearchBar];
     

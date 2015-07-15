@@ -14,6 +14,8 @@
     NSString *streetAdd;
     NSMutableDictionary *locationdictionary;
     UIView *googlebackview;
+    UIView *spinerview;
+    UIActivityIndicatorView *spinner_map;
 }
 
 @property(nonatomic) float currentlocationlat;

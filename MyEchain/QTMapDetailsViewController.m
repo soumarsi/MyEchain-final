@@ -91,7 +91,7 @@
         {
            NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-        //   NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        //  NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             NSLog(@"urlstring----> %@", urlString);
             
@@ -255,7 +255,19 @@
 - (NSArray *)annotations {
     // Empire State Building
     
+    spinerview = [[UIView alloc]initWithFrame:CGRectMake(20.0f, 100.0f, 260.0f, 100.0f)];
+    [spinerview setBackgroundColor:[UIColor blackColor]];
+    [spinerview setAlpha:0.5f];
+    spinerview.layer.cornerRadius = 5.0f;
+    [map_View addSubview:spinerview];
     
+    
+    spinner_map = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner_map.frame = CGRectMake(100.f, 20.0f, 60.0f, 60.0f);
+    spinner_map.hidesWhenStopped = YES;
+    
+    [spinerview addSubview:spinner_map];
+    [spinner_map startAnimating];
     NSMutableArray *locarryret = [[NSMutableArray alloc] init];
     
     for (int i = 0; i<self.LocationArray.count; i++) {
@@ -266,7 +278,7 @@
         empire.subtitle =[[self.LocationArray objectAtIndex:i] objectForKey:@"address"];
         empire.coordinate = CLLocationCoordinate2DMake([[[self.LocationArray objectAtIndex:i] objectForKey:@"latitude"] floatValue],[[[self.LocationArray objectAtIndex:i] objectForKey:@"longitude"] floatValue]);
         empire.disclosureBlock1 = ^{
-            
+      
             
             
             [googlebackview setHidden:NO];
@@ -278,8 +290,6 @@
             NSURL *url3 = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/maps?saddr=%@&daddr=%@",[streetAdd stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[[self.LocationArray objectAtIndex:i] objectForKey:@"address"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url3];
             [gwebView loadRequest:requestObj];
-            
-                     
         };
         
         empire.disclosureBlock = ^{
@@ -287,14 +297,17 @@
         };
         
         [locarryret addObject:[JPSThumbnailAnnotation annotationWithThumbnail:empire]];
-
+        [spinerview removeFromSuperview];
+        [spinner_map removeFromSuperview];
     };
     
+   
+    
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
+    // CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(35.7721000,-78.6386100);
     MKCoordinateRegion adjustedRegion = [map_View regionThatFits:MKCoordinateRegionMakeWithDistance(startCoord, 26000,26000)];
     [map_View setRegion:adjustedRegion animated:YES];
 
-    
     return locarryret;
 }
 
