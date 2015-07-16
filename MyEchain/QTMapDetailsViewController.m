@@ -89,9 +89,9 @@
         
         if(_detailsarray.count != 0)
         {
-           NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+          NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",self.currentlocationlat,self.currentlocationlong,[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
-        //  NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+         // NSString *  urlString =[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.7721000,-78.6386100&type=store&radius=19000&name=%@&key=AIzaSyD15g_CRZyYCS9HCQ-xGfDHmbNAubmP2k4",[[[NSUserDefaults standardUserDefaults]objectForKey:@"companyname"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             NSLog(@"urlstring----> %@", urlString);
             
@@ -255,6 +255,8 @@
 - (NSArray *)annotations {
     // Empire State Building
     
+    
+    NSLog(@"locationarray==--=-=- %lu", (unsigned long)self.LocationArray.count);
     spinerview = [[UIView alloc]initWithFrame:CGRectMake(20.0f, 100.0f, 260.0f, 100.0f)];
     [spinerview setBackgroundColor:[UIColor blackColor]];
     [spinerview setAlpha:0.5f];
@@ -268,8 +270,13 @@
     
     [spinerview addSubview:spinner_map];
     [spinner_map startAnimating];
-    NSMutableArray *locarryret = [[NSMutableArray alloc] init];
     
+     NSMutableArray *locarryret = [[NSMutableArray alloc] init];
+    if (self.LocationArray.count != 0)
+    {
+
+
+        
     for (int i = 0; i<self.LocationArray.count; i++) {
         
         JPSThumbnail *empire = [[JPSThumbnail alloc] init];
@@ -301,7 +308,12 @@
         [spinner_map removeFromSuperview];
     };
     
-   
+}
+    else
+    {
+        [spinerview removeFromSuperview];
+        [spinner_map removeFromSuperview];
+    }
     
     CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(self.currentlocationlat,self.currentlocationlong);
     // CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(35.7721000,-78.6386100);

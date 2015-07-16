@@ -17,11 +17,9 @@
 
 @interface QTSplashViewController ()
 {
-
     ACAccount *twitterAccount;
     ACAccountStore *accountStore;
     BOOL twitter_button_cilcked;
-
 }
 @end
 
@@ -44,6 +42,7 @@
     
     
     NSLog(@"QTSplashViewController");
+    
     
     mainview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, [[UIScreen mainScreen]bounds].size.height )];
     mainview.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"1-splashbg-1"]];
@@ -230,19 +229,11 @@ if ([[NSUserDefaults standardUserDefaults] objectForKey:@"id"]!=nil) {
     
     
     
-    lockarr = [NSJSONSerialization
-               
-               JSONObjectWithData:signeddataURL1
-               
-               
-               
-               options:kNilOptions
-               
-               error:&error];
+    lockarr = [NSJSONSerialization JSONObjectWithData:signeddataURL1 options:kNilOptions error:&error];
     
-    
-    
-    //if ([[lockarr objectAtIndex:0]objectForKey:@"lock_key"]!=[NSNull null] )
+       
+       
+
     if ([lockarr count]>0 )
         
     {
