@@ -1526,6 +1526,7 @@
             
         NSString *append_url=[NSString stringWithFormat:@"%@?name=%@&email=%@&sex=&city=&state=&zip=&address=&address2=&phone=&birthday=&type=app&type1=app_form",scannedCode,[fulname stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[NSUserDefaults standardUserDefaults]objectForKey:@"email"]];
             
+            NSLog(@"appendurl----- %@", append_url);
             
             UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 70, [[UIScreen mainScreen]bounds].size.width,[[UIScreen mainScreen]bounds].size.height-70)];
             webView.delegate=self;
