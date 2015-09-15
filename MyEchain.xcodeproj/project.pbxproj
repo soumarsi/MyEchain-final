@@ -35,6 +35,7 @@
 		2C89C99C1ACCFB3600DB3398 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99B1ACCFB3600DB3398 /* libiconv.dylib */; };
 		2C89C99E1ACCFB4400DB3398 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99D1ACCFB4400DB3398 /* OpenGLES.framework */; };
 		2C89C9A01ACCFB4A00DB3398 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99F1ACCFB4A00DB3398 /* QuartzCore.framework */; };
+		2CC14CCA1BA8038600005BA1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC14CC91BA8038600005BA1 /* Fabric.framework */; };
 		2CEE37071AA0A97F00561BD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE37061AA0A97F00561BD2 /* Images.xcassets */; };
 		EC03E6F519D6C74D001B456D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EC03E6F219D6C74D001B456D /* SVProgressHUD.bundle */; };
 		EC03E6F619D6C74D001B456D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC03E6F419D6C74D001B456D /* SVProgressHUD.m */; };
@@ -187,7 +188,7 @@
 		2C89C99B1ACCFB3600DB3398 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		2C89C99D1ACCFB4400DB3398 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2C89C99F1ACCFB4A00DB3398 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2CB6FEFC1AE77A0500253AE1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "../Walk-a-Pedia(Final 29jan)Newapi/Crashlytics.framework"; sourceTree = "<group>"; };
+		2CC14CC91BA8038600005BA1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		2CEE37061AA0A97F00561BD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC03E6F219D6C74D001B456D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		EC03E6F319D6C74D001B456D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -384,6 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC14CCA1BA8038600005BA1 /* Fabric.framework in Frameworks */,
 				2C89C9A01ACCFB4A00DB3398 /* QuartzCore.framework in Frameworks */,
 				2C89C99E1ACCFB4400DB3398 /* OpenGLES.framework in Frameworks */,
 				2C89C99C1ACCFB3600DB3398 /* libiconv.dylib in Frameworks */,
@@ -652,7 +654,7 @@
 		ECA2C5BF19D02E8300C9040D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2CB6FEFC1AE77A0500253AE1 /* Crashlytics.framework */,
+				2CC14CC91BA8038600005BA1 /* Fabric.framework */,
 				2C89C99F1ACCFB4A00DB3398 /* QuartzCore.framework */,
 				2C89C99D1ACCFB4400DB3398 /* OpenGLES.framework */,
 				2C89C99B1ACCFB3600DB3398 /* libiconv.dylib */,
@@ -807,6 +809,7 @@
 				ECA2C5B919D02E8300C9040D /* Sources */,
 				ECA2C5BA19D02E8300C9040D /* Frameworks */,
 				ECA2C5BB19D02E8300C9040D /* Resources */,
+				2CC14CC81BA802CB00005BA1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -904,6 +907,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CC14CC81BA802CB00005BA1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 00149b00a330480bf967f0b40c46994158c0e6ef 38a569d8500dc2e3b30e092513b2de99602c369f1fdc75b433652e593a5ff8db";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ECA2C5B919D02E8300C9040D /* Sources */ = {
