@@ -1209,13 +1209,7 @@
     
     NSError *error=nil;
     
-    
-    //urlString1 =[NSString stringWithFormat:@"%@card_details.php?userid=%@&company_id=%@&barcode_url=%@&barcode_type=&company_name=%@&code_data=",APPS_DOMAIN_URL,userid,cmp_id,[codetxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[cmptxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];  //
-    
-    
-//    urlString1 =[NSString stringWithFormat:@"%@new_card_details.php?user_id=%@&company_name=%@&barcode_type=%@&code_data=%@&card_number=%@",APPS_DOMAIN_URL,userid,cmptxt,[codetxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[sel_code.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[locnotxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSLog(@"dsfegvef %hhd", [[NSUserDefaults standardUserDefaults]boolForKey:@"scantap"]);
+  
         
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"scantap"])
     {

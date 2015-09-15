@@ -287,9 +287,6 @@
         DetailsArray = [NSJSONSerialization JSONObjectWithData:DetailsData options:kNilOptions error:&error];
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-       
-        
-        NSLog(@"detailsarraycount----- :%@",DetailsArray);
         
         int i;
         
@@ -400,37 +397,17 @@
                         
                         NSLog(@"generate barcode:%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]);
                         
-                        
-                        //            NKDUPCEBarcode *code=[[NKDUPCEBarcode alloc]initWithContent:[card_dict objectForKey:@"barcode_url"]];
-                        //
-                        //            barcodeimg=[UIImage imageFromBarcode:code];edit code
-                        //
-                        //           qrimg.backgroundColor=[UIColor whiteColor];
-                        //           qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+20, 320,80);
-                        //            qrimg.contentMode = UIViewContentModeScaleAspectFit;
-                        //            qrimg.clipsToBounds = YES;
-                        //            qrimg.image=barcodeimg;
-                        
-          
-                        
                         NKDCode128Barcode *code1 = [[NKDCode128Barcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
                         barcodeimg = [UIImage imageFromBarcode:code1];
                         qrimg.backgroundColor=[UIColor whiteColor];
-                        // qrimg.frame=CGRectMake(70, cardimg.frame.origin.y+cardimg.frame.size.height+20, [[UIScreen mainScreen]bounds].size.width-140,barcodeimg.size.height+20);
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
                         
-  
-                        
-                        
                     }
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN13"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN_13"])
                     {
-                        
-   
-                        
                         NKDEAN13Barcode *code = [[NKDEAN13Barcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
@@ -439,7 +416,6 @@
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
                         
-
                         
                     }
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"UPC_E"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"UPC_A"])
@@ -463,12 +439,6 @@
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"Code 39"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"CODE_39"])
                     {
                         
-                        
-                        NSLog(@"height  :%@",[card_dict objectForKey:@"barcode_url"]);
-                        
-
-                        
-                        
                         NKDCode39Barcode *code = [[NKDCode39Barcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
@@ -476,11 +446,7 @@
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
-                        
 
-                        
-                        NSLog(@"barcodeimage.....:%f",cardimg.frame.origin.y+cardimg.frame.size.height);
-                        NSLog(@"barcodeimage.....:%f",barcodeimg.size.height);
                     }
                     
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN8"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN_8"])
@@ -492,8 +458,6 @@
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
-                        
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+20, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+20);
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -504,16 +468,10 @@
                     
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"UPCEAN"])
                     {
-                        
-  
-                        
-                        
                         NKDAbstractUPCEANBarcode *code = [[NKDAbstractUPCEANBarcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -530,8 +488,6 @@
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+10, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -545,13 +501,9 @@
                         barcodeimg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.myechain.com/wp-content/themes/myechain-twentyeleven/includes/generate.php?type=pdf417&number=%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]]]]];
                         qrimg.backgroundColor=[UIColor clearColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+10, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
-                        
-          
                         
                     }
                     
@@ -570,8 +522,6 @@
                                                   andQuietZone:1
                                                        andSize:100];
                         
-                        
-                        
                     }
                 }
                 else
@@ -583,8 +533,6 @@
                     qrimg=[[UIImageView alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-70, cardimg.frame.origin.y+cardimg.frame.size.height+30, 140, 140)];
                     qrimg.backgroundColor=[UIColor clearColor];
                     [qrimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/qrcode_image/%@",[[DetailsArray objectAtIndex:i] objectForKey:@"code_data_image"]]] placeholderImage:[UIImage imageNamed:@"logo-1.png"] options:0 == 0?SDWebImageRefreshCached : 0];
-                    
-                    //qrimg.image=barcodeimg;
                     [DetailsScrollView addSubview:qrimg];
                     
                     
@@ -593,34 +541,16 @@
             }
             
           else if (branded) {
-                
-                NSLog(@"code type isss====%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]);
-                // if ([card_dict objectForKey:@"barcode_url"]!=[NSNull null]) {
+              
                 if (![[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]isEqualToString:@""]) {
                     
                     if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"Code 128"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"CODE_128"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"Code 93"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"CODE_93"])
                     {
                         
                         
-                        NSLog(@"generate barcode:%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]);
-                        
-                        
-                        //            NKDUPCEBarcode *code=[[NKDUPCEBarcode alloc]initWithContent:[card_dict objectForKey:@"barcode_url"]];
-                        //
-                        //            barcodeimg=[UIImage imageFromBarcode:code];edit code
-                        //
-                        //           qrimg.backgroundColor=[UIColor whiteColor];
-                        //           qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+20, 320,80);
-                        //            qrimg.contentMode = UIViewContentModeScaleAspectFit;
-                        //            qrimg.clipsToBounds = YES;
-                        //            qrimg.image=barcodeimg;
-                        
-               
-                        
                         NKDCode128Barcode *code1 = [[NKDCode128Barcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
                         barcodeimg = [UIImage imageFromBarcode:code1];
                         qrimg.backgroundColor=[UIColor whiteColor];
-                        // qrimg.frame=CGRectMake(70, cardimg.frame.origin.y+cardimg.frame.size.height+20, [[UIScreen mainScreen]bounds].size.width-140,barcodeimg.size.height+20);
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
@@ -648,8 +578,6 @@
                     }
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"UPC_E"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"UPC_A"])
                     {
-                        
-                        NSLog(@"asche UPC_A");
   //@""
                         
                         NKDEAN13Barcode *code = [[NKDEAN13Barcode alloc]initWithContent:[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"] printsCaption:YES];
@@ -669,11 +597,6 @@
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"Code 39"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"CODE_39"])
                     {
                         
-                        
-                        NSLog(@"height  :%@",[card_dict objectForKey:@"barcode_url"]);
-
-                        
-                        
 
                          barcodeimg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.myechain.com/wp-content/themes/myechain-twentyeleven/includes/generate.php?type=39&number=%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]]]]];
                         qrimg.backgroundColor=[UIColor whiteColor];
@@ -685,9 +608,7 @@
                         UIView *view = [[UIView alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width), 202, self.view.frame.size.width, 45)];
                         [view setBackgroundColor:[UIColor whiteColor]];
                         [DetailsScrollView addSubview:view];
-                        
-                        NSLog(@"barcodeimage.....:%f",cardimg.frame.origin.y+cardimg.frame.size.height);
-                        NSLog(@"barcodeimage.....:%f",barcodeimg.size.height);
+
                     }
                     
                     else if ([[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN8"]||[[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_type"]isEqualToString:@"EAN_8"])
@@ -698,8 +619,6 @@
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
-                        
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+20, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+20);
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -717,8 +636,6 @@
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+20, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -735,8 +652,6 @@
                         barcodeimg = [UIImage imageFromBarcode:code];
                         qrimg.backgroundColor=[UIColor whiteColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+10, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -750,8 +665,6 @@
                         barcodeimg = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.myechain.com/wp-content/themes/myechain-twentyeleven/includes/generate.php?type=pdf417&number=%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]]]]];
                         qrimg.backgroundColor=[UIColor clearColor];
                         qrimg.frame=CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-barcodeimg.size.width/2, cardimg.frame.origin.y+cardimg.frame.size.height+10, barcodeimg.size.width,barcodeimg.size.height+20);
-                        //qrimg.frame=CGRectMake(0, cardimg.frame.origin.y+cardimg.frame.size.height+10, [[UIScreen mainScreen]bounds].size.width,barcodeimg.size.height+30);
-                        // qrimg.contentMode=UIViewContentModeScaleAspectFill;
                         qrimg.contentMode = UIViewContentModeScaleAspectFit;
                         qrimg.clipsToBounds = YES;
                         qrimg.image=barcodeimg;
@@ -789,8 +702,6 @@
                 qrimg=[[UIImageView alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+[[UIScreen mainScreen]bounds].size.width/2-70, cardimg.frame.origin.y+cardimg.frame.size.height+30, 140, 140)];
                 qrimg.backgroundColor=[UIColor clearColor];
                 [qrimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/qrcode_image/%@",[[DetailsArray objectAtIndex:i] objectForKey:@"barcode_url"]]] placeholderImage:[UIImage imageNamed:@"logo-1.png"] options:0 == 0?SDWebImageRefreshCached : 0];
-                
-                //qrimg.image=barcodeimg;
                 [DetailsScrollView addSubview:qrimg];
                 
                 
@@ -819,16 +730,10 @@
             [DetailsScrollView addSubview:securitycode];
             
             branded=NO;
-            
-            // editview.hidden=NO;
-            
-            //    NSString *sectionTitle = [card_dict objectAtIndex:indexPath.section];
-            //    sectionContactsArray = [add_contacts_dict objectForKey:sectionTitle];
-            
             cardobj=[QTcardarr getInstance];
             
             
-            
+            NSLog(@"-=-= %@", cardobj.card_arr);
             for (int j=0; j<[cardobj.card_arr count]; j++) {
                 
                 if ([_card_id isEqualToString:[[cardobj.card_arr objectAtIndex:j]objectForKey:@"id"]])
@@ -867,9 +772,6 @@
                 
                 
                 UILabel *cardname=[[UILabel alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+0, gray_editvw.frame.origin.y+gray_editvw.frame.size.height+10, 320, 20)];
-                
-                // UILabel *cardname=[[UILabel alloc]initWithFrame:CGRectMake(0, QRno.frame.origin.y+QRno.frame.size.height+10, 320, 20)];
-                // cardname.text=[NSString stringWithFormat:@"%@",[[card_dict objectForKey:@"name"]capitalizedString]];
                 cardname.textColor=[UIColor whiteColor];
                 cardname.font=[UIFont systemFontOfSize:17];
                 cardname.textAlignment=NSTextAlignmentCenter;
@@ -939,17 +841,9 @@
                 cardname.textAlignment=NSTextAlignmentCenter;
                 [DetailsScrollView addSubview:cardname];
                 
-                
-                
-                
-                NSLog(@"phone... :%lu",(unsigned long)[NSString stringWithFormat:@"%@",[[DetailsArray objectAtIndex:i] objectForKey:@"phone"]].length);
-                
                 UILabel *QRno=[[UILabel alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+15, 357, 320, 20)];
                 if ([NSString stringWithFormat:@"%@",[[DetailsArray objectAtIndex:i] objectForKey:@"phone"]].length != 0) {
-                    
-                    NSLog(@"branded");
-                        
-                        UIImageView *phn_img=[[UIImageView alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+80, 355, 30, 30)];
+                          UIImageView *phn_img=[[UIImageView alloc]initWithFrame:CGRectMake((i * self.view.frame.size.width)+80, 355, 30, 30)];
                         phn_img.image=[UIImage imageNamed:@"phoneicondetails"];
                         [DetailsScrollView addSubview:phn_img];
                         
@@ -1020,19 +914,7 @@
             twit=[UIButton buttonWithType:UIButtonTypeRoundedRect];
             twit.frame=CGRectMake(arrow.frame.origin.x+arrow.frame.size.width+13, [[UIScreen mainScreen]bounds].size.height-90-70, 71/2, 71/2);
             
-            
-            //    }
-            //    else
-            //    {
-            //         globe.frame=CGRectMake(45+20, [[UIScreen mainScreen]bounds].size.height-90, 71/2, 71/2);
-            //
-            //        twit=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-            //        twit.frame=CGRectMake(110, [[UIScreen mainScreen]bounds].size.height-90, 71/2, 71/2);
-            //
-            //
-            //    }
-            //    twit=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-            //    twit.frame=CGRectMake(arrow.frame.origin.x+arrow.frame.size.width+13, [[UIScreen mainScreen]bounds].size.height-90, 71/2, 71/2);
+
             [twit setBackgroundImage:[UIImage imageNamed:@"twittericondetails"] forState:UIControlStateNormal];
             [twit setBackgroundImage:[UIImage imageNamed:@"twittericondetails"] forState:UIControlStateSelected];
             [twit setBackgroundImage:[UIImage imageNamed:@"twittericondetails"] forState:UIControlStateHighlighted];
@@ -1085,28 +967,7 @@
     
    }];
   
-    
-    
-    //////////////////
-    
-//    NSString *urlString1;
-//    
-//    NSError *error=nil;
-//    
-//    urlString1 =[NSString stringWithFormat:@"%@barcode_image.php?user_id=%@&company_id=%@",APPS_DOMAIN_URL,userid,[card_dict objectForKey:@"id"]];
-//    
-//    NSLog(@"eta holo category:  %@",urlString1);
-//    
-//    NSURL *requestURL1 = [NSURL URLWithString:urlString1];
-//    
-//    NSData *signeddataURL1 =  [NSData dataWithContentsOfURL:requestURL1 options:NSDataReadingUncached error:&error];
-//    
-//    NSString *ret_str = [[NSString alloc] initWithData:signeddataURL1 encoding:NSUTF8StringEncoding];
-//    
-//    NSLog(@"ret_str====%@",ret_str);
-    
-    
-
+ 
     
     ///**************card edit view
     
@@ -1478,65 +1339,6 @@
     [self presentViewController:pie_chart animated:YES completion:nil];
 
 }
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-//{
-//    
-//    NSLog(@"view for annotation");
-//    
-//    
-//    
-//    
-//    // If it's the user location, just return nil.
-//    if ([annotation isKindOfClass:[MKUserLocation class]])
-//        return nil;
-//    
-//    // Handle any custom annotations.
-//    if ([annotation isKindOfClass:[MKPointAnnotation class]])
-//    {
-//        // Try to dequeue an existing pin view first.
-//        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
-//        if (!pinView)
-//        {
-//            // If an existing pin view was not available, create one.
-//            
-//            
-//            pinView = [[MKPinAnnotationView alloc] init];
-//            pinView.canShowCallout = YES;
-//            
-//           // if(annotation==myAnnotation)
-//                pinView.image = [UIImage imageNamed:@"Maplocator.png"];
-//            
-//       
-////            else
-////            {
-////                
-////                pinView.image = [UIImage imageNamed:@"locator_blue1.png"];
-////                
-////            }
-//            pinView.calloutOffset = CGPointMake(0, 0);
-//            
-//            
-//            
-//            //            annocnt=(!annocnt);
-//            //
-//            //            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//            //            pinView.rightCalloutAccessoryView = rightButton;
-//            //
-//            //            UIImageView *iconView = [[UIImageView alloc] init];
-//            //            iconView.frame = CGRectMake(0.0f, 0.0f,20, 20);
-//            //            pinView.leftCalloutAccessoryView = iconView;
-//            
-//
-//            pinView.annotation = annotation;
-//        }
-//        
-//        // NSLog(@"Annotation-Index: %d", [mapView.annotations indexOfObject:annotation]);
-//        return pinView;
-//    }
-//    
-//    return nil;
-//}
-
 
 -(void)cellfirefn:(UITapGestureRecognizer *)sender
 {
@@ -1655,17 +1457,7 @@
             qrimg.contentMode = UIViewContentModeScaleAspectFit;
             qrimg.clipsToBounds = YES;
             qrimg.image=barcodeimg;
-            
-            
-            //            UILabel *codestrlb=[[UILabel alloc]initWithFrame:CGRectMake(0, qrimg.frame.origin.y+qrimg.frame.size.height+15, 320, 30)];
-            //
-            //                codestrlb.text=codetxt.text;
-            //
-            //            codestrlb.textColor=[UIColor whiteColor];
-            //            codestrlb.font=[UIFont boldSystemFontOfSize:20];
-            //            codestrlb.textAlignment=NSTextAlignmentCenter;
-            //            [mainview addSubview:codestrlb];
-            qr_code.text=codetxt.text;
+             qr_code.text=codetxt.text;
             
             
         }
@@ -1681,28 +1473,7 @@
                                       andQuietZone:1
                                            andSize:100];
             
-            //            UILabel *codestrlb=[[UILabel alloc]initWithFrame:CGRectMake(0, qrimg.frame.origin.y+qrimg.frame.size.height+15, 320, 30)];
-            //
-            //            codestrlb.text=codetxt.text;
-            //
-            //            codestrlb.textColor=[UIColor whiteColor];
-            //            codestrlb.font=[UIFont boldSystemFontOfSize:20];
-            //            codestrlb.textAlignment=NSTextAlignmentCenter;
-            //            [mainview addSubview:codestrlb];
-            
             qr_code.text=codetxt.text;
-            
-            
-            //            OBLinear *pLinear = [[OBLinear alloc]init];
-            //            [pLinear setNBarcodeType: OB_CODE39];
-            //            NSString *pMsg = (@"12345");
-            //            [pLinear setPDataMsg: pMsg];
-            //
-            //            [self setLinearBarcodeDimension: pLinear];
-            //
-            //            CGRect printArea = CGRectMake(10.0, 20.0, 300.0, 200.0);
-            //            [pLinear drawWithView: (qrimg) rect: &printArea alignHCenter: TRUE];
-            
             
             
         }
@@ -1740,9 +1511,6 @@
     else
         barcodestr=@"";
     NSString *userid=[[NSUserDefaults standardUserDefaults]objectForKey:@"id"];
-    
-    //urlString1 =[NSString stringWithFormat:@"%@update_user.php?company_id=%@&barcode_url=%@&barcode_type=%@&code_data=%@&company_name=%@&local_no=%@&user_id=%@",APPS_DOMAIN_URL,[[card_dict objectForKey:@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[barcodestr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[typelb.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[codetxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[cmptxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[locnotxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],userid];  //
-    
     
     urlString1 =[NSString stringWithFormat:@"%@update_user.php?company_id=%@&barcode_url=%@&barcode_type=%@&code_data=&company_name=%@&local_no=%@&user_id=%@",APPS_DOMAIN_URL,[[card_dict objectForKey:@"id"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[codetxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[typelb.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[cmptxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[locnotxt.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],userid];
     
@@ -1816,13 +1584,7 @@
     
     card_edit=YES;
     branded=NO;
-    
-   // editview.hidden=NO;
-    
-//    NSString *sectionTitle = [card_dict objectAtIndex:indexPath.section];
-//    sectionContactsArray = [add_contacts_dict objectForKey:sectionTitle];
-  
-    QTcardarr *cardobj=[QTcardarr getInstance];
+     QTcardarr *cardobj=[QTcardarr getInstance];
     
     [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"scantap"];
     [[NSUserDefaults standardUserDefaults]synchronize];
@@ -1900,13 +1662,6 @@
 -(void)share
 {
     
-//    UIImage *yourImage=cardimg.image;
-//    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:[NSString stringWithFormat:@"I just used my #%@ card with #MyEChain loyalty & rewards card App http://bit.ly/uNox4s",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]],yourImage, nil] applicationActivities:nil];
-//    activityVC.excludedActivityTypes = @[ UIActivityTypeMessage ,UIActivityTypeSaveToCameraRoll];
-//    
-//    [self presentViewController:activityVC animated:YES completion:nil];
-    
-    
 
     UIImage *imagesh = cardimg.image;
     
@@ -1969,90 +1724,7 @@
 -(void)locator:(UIButton *)sender
 {
     
-    
-    //**********locator_url
-    
-    //    [activityIndicator stopAnimating];
-    //    [activityIndicator setHidden:YES];
-    //
-    //
-    //
-    //    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 70, 320,[[UIScreen mainScreen]bounds].size.height-70)];
-    //    webView.delegate=self;
-    //    [self.view addSubview:webView];
-    //    [webView setHidden:YES];
-    //
-    //    if ([card_dict objectForKey:@"locator"]==[NSNull null]) {
-    //        UIAlertView *alrt=[[UIAlertView alloc]initWithTitle:@"This webpage is not available" message:@"unable to find and load the requested webpage" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-    //        [alrt show];
-    //    }
-    //else
-    //{
-    //    if ([[card_dict objectForKey:@"locator"] hasPrefix:@"http"])
-    //   url2 = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[card_dict objectForKey:@"locator"]]];
-    //    else
-    //        url2 = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",[card_dict objectForKey:@"locator"]]];
-    //    // NSURL *url2 = [NSURL URLWithString:@"http://google.com"];
-    //     NSLog(@"locator url isss====%@",url2);
-    //    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url2];
-    //    [webView loadRequest:requestObj];
-    //       [webView setHidden:NO];
-    //}
-    
-//    if ([card_dict objectForKey:@"lat"]!=[NSNull null] && [card_dict objectForKey:@"long"]!=[NSNull null]) {
-//        
-//        if (![[card_dict objectForKey:@"lat"]isEqualToString:@""] && ![[card_dict objectForKey:@"long"]isEqualToString:@""]) {
-    
-    
-//    NSString *urlString;
-//    data_retrived = [[NSMutableArray alloc] init];
-//    
-//    urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=true",_latitude,_longitude];
-//    
-//    NSLog(@" %@",urlString);
-//    NSURL *requestURL = [NSURL URLWithString:urlString];
-//    NSError* error = nil;
-//    NSLog(@"%@", urlString);
-//    NSData *signeddataURL =  [NSData dataWithContentsOfURL:requestURL options:NSDataReadingUncached error:&error];
-//    
-//    NSMutableDictionary *result = [NSJSONSerialization
-//                                   JSONObjectWithData:signeddataURL //1
-//                                   
-//                                   options:kNilOptions
-//                                   error:&error];
-//    
-//    for(NSMutableDictionary *dict in result)
-//    {
-//        [data_retrived addObject:dict];
-//        
-//    }
-//    
-//    streetAdd = [[[result objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"];
-//
-//    
-//    
-//    
-//              [map_backview setHidden:NO];
-//            [map_View addAnnotations:[self annotations]];
-    
-    
-    
-//        }
-//        else
-//        {
-//            UIAlertView *alrt=[[UIAlertView alloc]initWithTitle:@"SORRY" message:@"No locator found" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-//            [alrt show];
-//            
-//        }
-//
-//    }
-//    else
-//    {
-//    UIAlertView *alrt=[[UIAlertView alloc]initWithTitle:@"SORRY" message:@"No locator found" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-//        [alrt show];
-//    
-//    }
-    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]] forKey:@"companyname"];
+      [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[[DetailsArray objectAtIndex:0]objectForKey:@"company_name"]] forKey:@"companyname"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
     
@@ -2061,9 +1733,7 @@
     [MapDetails setCurrentlocationlong:self.longitude];
    // [MapDetails setLocationArray:LocationArray];
     [MapDetails setDetailsarray:DetailsArray];
-//    [MapDetails setDestinationlat:[[[LocationArray objectAtIndex:i] objectForKey:@"latitude"] floatValue]];
-//    [MapDetails setDestinationlong:[[[LocationArray objectAtIndex:i] objectForKey:@"longitude"] floatValue]];
-//    [MapDetails setAddress:[[LocationArray objectAtIndex:i] objectForKey:@"address"]];
+
     [self presentViewController:MapDetails animated:YES completion:nil];
 
  }
@@ -2094,15 +1764,6 @@
         NSURL *url3 = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/maps?saddr=%@&daddr=%@",[streetAdd stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[[LocationArray objectAtIndex:i] objectForKey:@"address"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url3];
        [gwebView loadRequest:requestObj];
-
-//            QTMapDetailsViewController *MapDetails = [[QTMapDetailsViewController alloc]init];
-//            [MapDetails setCurrentlocationlat:self.latitude];
-//            [MapDetails setCurrentlocationlong:self.longitude];
-//            [MapDetails setDestinationlat:[[[LocationArray objectAtIndex:i] objectForKey:@"latitude"] floatValue]];
-//            [MapDetails setDestinationlong:[[[LocationArray objectAtIndex:i] objectForKey:@"longitude"] floatValue]];
-//            [MapDetails setAddress:[[LocationArray objectAtIndex:i] objectForKey:@"address"]];
-//            [self presentViewController:MapDetails animated:YES completion:nil];
-      
         };
         
         empire.disclosureBlock = ^{
@@ -2247,52 +1908,6 @@
 -(void)shareTwitter:(UIButton *)sender
 {
     
-    ////////////////////////Code for twitter share
-    
-    
-    
-    //     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-    //
-    //   SLComposeViewController *composeController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    //
-    //    [composeController setInitialText:@"MyEChain"];
-    //    [composeController addImage:cardimg.image];
-    //    //[composeController addURL: [NSURL URLWithString:
-    //     //                           @"http://www.apple.com"]];
-    //
-    //    [self presentViewController:composeController
-    //                       animated:YES completion:nil];
-    //
-    //    SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
-    //        if (result == SLComposeViewControllerResultCancelled) {
-    //
-    //            NSLog(@"delete");
-    //
-    //        } else
-    //
-    //        {
-    //            NSLog(@"post");
-    //        }
-    //
-    //        //   [composeController dismissViewControllerAnimated:YES completion:Nil];
-    //    };
-    //    composeController.completionHandler =myBlock;
-    //     }
-    //     else{
-    //
-    //
-    //         NSLog(@"twitter account not setup");
-    //
-    //
-    //         alert = [[UIAlertView alloc] initWithTitle:@"Sorry!!!" message:@"Please setup your twitter account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //         //alert.tag=3;
-    //
-    //         [alert show];
-    //
-    //
-    //     }
-    //
-    
     //////////////////////////////////////////////////
     
     
@@ -2339,47 +1954,6 @@
     
     
     
-    //    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-    //
-    //        SLComposeViewController *mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    //
-    //        [mySLComposerSheet setInitialText:@"MyEChain"];
-    //
-    //        [mySLComposerSheet addImage:cardimg.image];
-    //
-    //        //[mySLComposerSheet addURL:[NSURL URLWithString:@"http://stackoverflow.com/questions/12503287/tutorial-for-slcomposeviewcontroller-sharing"]];
-    //
-    //        [mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
-    //
-    //            switch (result) {
-    //                case SLComposeViewControllerResultCancelled:
-    //                    NSLog(@"Post Canceled");
-    //                    break;
-    //                case SLComposeViewControllerResultDone:
-    //                    NSLog(@"Post Sucessful");
-    //                    break;
-    //
-    //                default:
-    //                    break;
-    //            }
-    //        }];
-    //
-    //        [self presentViewController:mySLComposerSheet animated:YES completion:nil];
-    //
-    //    }
-    //    else{
-    //
-    //
-    //        NSLog(@"fb account not setup");
-    //
-    //
-    //        alert = [[UIAlertView alloc] initWithTitle:@"Sorry!!!" message:@"Please setup your facebook account" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //        //alert.tag=3;
-    //
-    //        [alert show];
-    //
-    //
-    //    }
     
     ///////////////////////////////////////////////////////
     
@@ -2568,17 +2142,12 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    if(scrollView==scrollViewForZoomImage){
-//        float width = self.scrollViewForZoomImage.frame.size.width;
-//        float xPos = self.scrollViewForZoomImage.contentOffset.x+10;
-//        pagecontrolforzoomimage.currentPage = (int)xPos/width;
-//    }else{
         float width = DetailsScrollView.frame.size.width;
         float xPos = DetailsScrollView.contentOffset.x+10;
         
         //Calculate the page we are on based on x coordinate position and width of scroll view
         pagecontrolforzoomimage.currentPage = (int)xPos/width;
-    //}
+
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     

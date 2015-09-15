@@ -59,18 +59,7 @@
             
             chosenImage=nil;
             
-            
-            
-            
-            
-//            spin_img11 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//            spin_img11.hidesWhenStopped = YES;
-//            spin_img11.backgroundColor=[UIColor clearColor];
-//            [spin_img11 startAnimating];
-//            //spinner1a.center = CGPointMake(160, 240);
-//            spin_img11.frame=CGRectMake([[UIScreen mainScreen]bounds].size.width/2-25,[[UIScreen mainScreen]bounds].size.height/2-25,50,50);
-//            
-//            [mainview addSubview: spin_img11];
+
             
 
             profimg=[[UIImageView alloc]initWithFrame:CGRectMake(100, headview.frame.origin.y+headview.frame.size.height+10, 250/2, 250/2)];
@@ -86,13 +75,15 @@
                 profimg.clipsToBounds=YES;
                 
             }
-            
-            
-            
             else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] length]>0)
             {
+                
+                NSLog(@"entry");
+                
                 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] containsString:@"http"]) {
                     
+                    
+                    NSLog(@"userdefaults");
                     
                     [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
                     
@@ -101,12 +92,14 @@
                 }
                 else
                 {
+                     NSLog(@"else_userdefaults");
+                    
                     // [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
                     
                     
-                    // [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+                   // [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
                     
-                    profimg.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]]]];
+                 profimg.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]]]];
                     
                 }
                 
@@ -450,6 +443,96 @@
     spin_img.frame=CGRectMake(15,15,50,50);
     
     [profimg addSubview: spin_img];
+    
+    MainQueue = [[NSOperationQueue alloc]init];
+    [MainQueue addOperationWithBlock:^{
+        
+        NSString *urlString1;
+        
+        urlString1 =[NSString stringWithFormat:@"http://esolz.co.in/lab1/Web/myEchain/Iosapp/pic_url.php?id=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"]];
+        
+        NSError *error;
+        
+        NSLog(@"eta holo category:  %@",urlString1);
+        
+        NSURL *requestURL1 = [NSURL URLWithString:urlString1];
+        
+        NSData *signeddataURL1 =  [NSData dataWithContentsOfURL:requestURL1 options:NSDataReadingUncached error:&error];
+        
+        ret_str = [[NSString alloc] initWithData:signeddataURL1 encoding:NSUTF8StringEncoding];
+        
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            chosenImage=nil;
+            
+            
+            
+            
+            profimg=[[UIImageView alloc]initWithFrame:CGRectMake(100, headview.frame.origin.y+headview.frame.size.height+10, 250/2, 250/2)];
+            
+            NSLog(@"userpicthumb====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
+            NSLog(@"userimggg====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]);
+            
+            
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]!=nil) {
+                
+                [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+                profimg.layer.cornerRadius=125/2;
+                profimg.clipsToBounds=YES;
+                
+            }
+            else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] length]>0)
+            {
+                
+                NSLog(@"entry");
+                
+                if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] containsString:@"http"]) {
+                    
+                    
+                    NSLog(@"userdefaults");
+                    
+                    [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+                    
+                    
+                    
+                }
+                else
+                {
+                    NSLog(@"else_userdefaults");
+                    
+                    // [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+                    
+                    
+                    // [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+                    
+                    profimg.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]]]];
+                    
+                }
+                
+                
+                NSLog(@"img er url===%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
+                profimg.contentMode=UIViewContentModeScaleAspectFill;
+                profimg.layer.cornerRadius=125/2;
+                profimg.clipsToBounds=YES;
+                
+            }
+            else
+            {
+                //[self loadImage:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]] andImageView:profimg];
+                
+                
+                profimg.image=[UIImage imageNamed:@"profile-pic"];
+                
+            }
+            [mainview addSubview:profimg];
+            
+            
+            
+            
+        }];
+        
+    }];
 
 
 }
@@ -522,12 +605,12 @@
                 [request setURL:requestURL];
                 [request setTimeoutInterval:10];
                 [request setHTTPMethod:@"POST"];
-                request = [[NSMutableURLRequest alloc] init];
-                [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-                [request setHTTPShouldHandleCookies:NO];
-                [request setURL:requestURL];
-                [request setTimeoutInterval:10];
-                [request setHTTPMethod:@"POST"];
+//                request = [[NSMutableURLRequest alloc] init];
+//                [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+//                [request setHTTPShouldHandleCookies:NO];
+//                [request setURL:requestURL];
+//                [request setTimeoutInterval:10];
+//                [request setHTTPMethod:@"POST"];
                 
                 if([[NSData dataWithData:UIImageJPEGRepresentation(chosenImage, 1)] length]>0)
                 {
@@ -594,98 +677,87 @@
                             
                             //alert.tag=3;
                             [alert show];
-                            [[NSUserDefaults standardUserDefaults]setObject:[json objectForKey:@"user_img"] forKey:@"user_pic_thumb"];
-                            [[NSUserDefaults standardUserDefaults]synchronize];
-                            
-                            
-                            MainQueue = [[NSOperationQueue alloc]init];
-                            [MainQueue addOperationWithBlock:^{
-                                
-                                NSString *urlString1;
-                                
-                                urlString1 =[NSString stringWithFormat:@"http://esolz.co.in/lab1/Web/myEchain/Iosapp/pic_url.php?id=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"]];
-                                
-                                NSError *error;
-                                
-                                NSLog(@"eta holo category:  %@",urlString1);
-                                
-                                NSURL *requestURL1 = [NSURL URLWithString:urlString1];
-                                
-                                NSData *signeddataURL1 =  [NSData dataWithContentsOfURL:requestURL1 options:NSDataReadingUncached error:&error];
-                                
-                                ret_str = [[NSString alloc] initWithData:signeddataURL1 encoding:NSUTF8StringEncoding];
-                                
-                                
-                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                    
-                                    chosenImage=nil;
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    //            spin_img11 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-                                    //            spin_img11.hidesWhenStopped = YES;
-                                    //            spin_img11.backgroundColor=[UIColor clearColor];
-                                    //            [spin_img11 startAnimating];
-                                    //            //spinner1a.center = CGPointMake(160, 240);
-                                    //            spin_img11.frame=CGRectMake([[UIScreen mainScreen]bounds].size.width/2-25,[[UIScreen mainScreen]bounds].size.height/2-25,50,50);
-                                    //
-                                    //            [mainview addSubview: spin_img11];
-                                    
-                                    
-                                    profimg=[[UIImageView alloc]initWithFrame:CGRectMake(100, headview.frame.origin.y+headview.frame.size.height+10, 250/2, 250/2)];
-                                    
-                                    NSLog(@"userpicthumb====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
-                                    NSLog(@"userimggg====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]);
-                                    
-                                    
-                                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]!=nil) {
-                                        
-                                        [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
-                                        profimg.layer.cornerRadius=125/2;
-                                        profimg.clipsToBounds=YES;
-                                        
-                                    }
-                                    
-                                    
-                                    
-                                    else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] length]>0)
-                                    {
-                                        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] containsString:@"http"]) {
-                                            
-                                            
-                                            [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
-                                            
-                                            
-                                            
-                                        }
-                                        else
-                                        {                                            
-                                            profimg.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]]]];
-                                            
-                                        }
-                                        
-                                        
-                                        NSLog(@"img er url===%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
-                                        profimg.contentMode=UIViewContentModeScaleAspectFill;
-                                        profimg.layer.cornerRadius=125/2;
-                                        profimg.clipsToBounds=YES;
-                                        
-                                    }
-                                    else
-                                    {
-                                        profimg.image=[UIImage imageNamed:@"profile-pic"];
-                                        
-                                    }
-                                    [mainview addSubview:profimg];
-                                    
-                                    
-                                    
-                                    
-                                }];
-                                
-                            }];
+//                            [[NSUserDefaults standardUserDefaults]setObject:[json objectForKey:@"user_img"] forKey:@"user_pic_thumb"];
+//                            [[NSUserDefaults standardUserDefaults]synchronize];
+//                            
+//                            MainQueue = [[NSOperationQueue alloc]init];
+//                            [MainQueue addOperationWithBlock:^{
+//                                
+//                                NSString *urlString1;
+//                                
+//                                urlString1 =[NSString stringWithFormat:@"http://esolz.co.in/lab1/Web/myEchain/Iosapp/pic_url.php?id=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"]];
+//                                
+//                                NSError *error;
+//                                
+//                                NSLog(@"eta holo category:  %@",urlString1);
+//                                
+//                                NSURL *requestURL1 = [NSURL URLWithString:urlString1];
+//                                
+//                                NSData *signeddataURL1 =  [NSData dataWithContentsOfURL:requestURL1 options:NSDataReadingUncached error:&error];
+//                                
+//                                ret_str = [[NSString alloc] initWithData:signeddataURL1 encoding:NSUTF8StringEncoding];
+//                                
+//                                
+//                                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                                    
+//                                    chosenImage=nil;
+//                                    
+//                                    profimg=[[UIImageView alloc]initWithFrame:CGRectMake(100, headview.frame.origin.y+headview.frame.size.height+10, 250/2, 250/2)];
+//                                    
+//                                    NSLog(@"userpicthumb====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
+//                                    NSLog(@"userimggg====%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]);
+//                                    
+//                                    
+//                                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]!=nil) {
+//                                        
+//                                        [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userimage"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+//                                        profimg.layer.cornerRadius=125/2;
+//                                        profimg.clipsToBounds=YES;
+//                                        
+//                                    }
+//                                    
+//                                    
+//                                    
+//                                    else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] length]>0)
+//                                    {
+//                                        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"] containsString:@"http"]) {
+//                                            
+//                                            NSLog(@"previoussave");
+//                                            [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+//                                            
+//                                            
+//                                            
+//                                        }
+//                                        else
+//                                        {
+//                                            
+//                                            NSLog(@"aftersave");
+//                                            
+//                                             [profimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]] placeholderImage:[UIImage imageNamed:@"placeholder"] options:0 == 0?SDWebImageRefreshCached : 0];
+//                                          //  profimg.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/userimage/thumb/%@",ret_str]]]];
+//                                            
+//                                        }
+//                                        
+//                                        
+//                                        NSLog(@"img er url===%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"user_pic_thumb"]);
+//                                        profimg.contentMode=UIViewContentModeScaleAspectFill;
+//                                        profimg.layer.cornerRadius=125/2;
+//                                        profimg.clipsToBounds=YES;
+//                                        
+//                                    }
+//                                    else
+//                                    {
+//                                        profimg.image=[UIImage imageNamed:@"profile-pic"];
+//                                        
+//                                    }
+//                                    [mainview addSubview:profimg];
+//                                    
+//                                    
+//                                    
+//                                    
+//                                }];
+//                                
+//                            }];
 
                         }
                         
@@ -877,7 +949,6 @@
                 NSString *bundle = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"]; //5
                 
                 
-                
                 [fileManager copyItemAtPath:bundle toPath: path error:&error]; //6
                 
             }
@@ -885,10 +956,7 @@
             
             
             // [self readdata];
-            
-            
-            
-            
+    
             
             [self performSelectorInBackground:@selector(urlfetch) withObject:nil];
             
@@ -1192,11 +1260,7 @@
     if (alertView.tag==5) {
         
         if (buttonIndex != [alertView cancelButtonIndex]) {
-            
-            
-            
-            
-        }
+         }
         
     }
 }
@@ -1205,15 +1269,15 @@
     NSLog(@"didFinishPickingMediaWithInfo");
     
     chosenImage = info[UIImagePickerControllerEditedImage];
-    if(chosenImage == nil)
-    {
-        chosenImage = info[UIImagePickerControllerOriginalImage];
-    }
+//    if(chosenImage == nil)
+//    {
+//        chosenImage = info[UIImagePickerControllerOriginalImage];
+//    }
     profimg.image =chosenImage;
     
     
-    NSData *imageData = UIImagePNGRepresentation(profimg.image);
-    imageString = [[NSString alloc] initWithBytes: [imageData bytes] length:[imageData length] encoding:NSUTF8StringEncoding];
+//    NSData *imageData = UIImagePNGRepresentation(profimg.image);
+//    imageString = [[NSString alloc] initWithBytes: [imageData bytes] length:[imageData length] encoding:NSUTF8StringEncoding];
     profimg.layer.cornerRadius=125/2;
     profimg.clipsToBounds=YES;
     

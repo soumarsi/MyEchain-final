@@ -130,8 +130,14 @@ itemImage.layer.cornerRadius = 5.0f;
 -(void)closeItem:(id)sender
 {
  
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL"
+//                                                    message:@"Dee dee doo doo."
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
     
-	[UIView animateWithDuration:0.1 
+	[UIView animateWithDuration:0.1
 						  delay:0 
 						options:UIViewAnimationOptionCurveEaseIn 
 					 animations:^{	

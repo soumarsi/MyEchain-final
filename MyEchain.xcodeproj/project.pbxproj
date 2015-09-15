@@ -35,7 +35,6 @@
 		2C89C99C1ACCFB3600DB3398 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99B1ACCFB3600DB3398 /* libiconv.dylib */; };
 		2C89C99E1ACCFB4400DB3398 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99D1ACCFB4400DB3398 /* OpenGLES.framework */; };
 		2C89C9A01ACCFB4A00DB3398 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C89C99F1ACCFB4A00DB3398 /* QuartzCore.framework */; };
-		2CB6FF001AE77AC500253AE1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB6FEFF1AE77AC500253AE1 /* Crashlytics.framework */; };
 		2CEE37071AA0A97F00561BD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CEE37061AA0A97F00561BD2 /* Images.xcassets */; };
 		EC03E6F519D6C74D001B456D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EC03E6F219D6C74D001B456D /* SVProgressHUD.bundle */; };
 		EC03E6F619D6C74D001B456D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC03E6F419D6C74D001B456D /* SVProgressHUD.m */; };
@@ -189,7 +188,6 @@
 		2C89C99D1ACCFB4400DB3398 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2C89C99F1ACCFB4A00DB3398 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2CB6FEFC1AE77A0500253AE1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "../Walk-a-Pedia(Final 29jan)Newapi/Crashlytics.framework"; sourceTree = "<group>"; };
-		2CB6FEFF1AE77AC500253AE1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		2CEE37061AA0A97F00561BD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC03E6F219D6C74D001B456D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		EC03E6F319D6C74D001B456D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -387,7 +385,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C89C9A01ACCFB4A00DB3398 /* QuartzCore.framework in Frameworks */,
-				2CB6FF001AE77AC500253AE1 /* Crashlytics.framework in Frameworks */,
 				2C89C99E1ACCFB4400DB3398 /* OpenGLES.framework in Frameworks */,
 				2C89C99C1ACCFB3600DB3398 /* libiconv.dylib in Frameworks */,
 				2C89C99A1ACCFB2400DB3398 /* libz.dylib in Frameworks */,
@@ -625,7 +622,6 @@
 			isa = PBXGroup;
 			children = (
 				2CEE37061AA0A97F00561BD2 /* Images.xcassets */,
-				2CB6FEFF1AE77AC500253AE1 /* Crashlytics.framework */,
 				2C7627991AB99DA1007CA080 /* jsthumbnailannotaion */,
 				2C297D491A9DE9DF0053BA57 /* LauncherView */,
 				2C297D701A9E12580053BA57 /* Model.h */,
@@ -811,7 +807,6 @@
 				ECA2C5B919D02E8300C9040D /* Sources */,
 				ECA2C5BA19D02E8300C9040D /* Frameworks */,
 				ECA2C5BB19D02E8300C9040D /* Resources */,
-				2CB6FEFE1AE77A5A00253AE1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -850,6 +845,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Esolz;
 				TargetAttributes = {
+					ECA2C5BC19D02E8300C9040D = {
+						DevelopmentTeam = HVFEBCENV9;
+					};
 					ECA2C5D719D02E8300C9040D = {
 						TestTargetID = ECA2C5BC19D02E8300C9040D;
 					};
@@ -906,22 +904,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2CB6FEFE1AE77A5A00253AE1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 8224639480744f62af73cb003d2596176c9e35ce 84ef0ab89598304af68ec11e76296f0331d36143f0e80c6a5cac993a00f3071f";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ECA2C5B919D02E8300C9040D /* Sources */ = {
@@ -1142,7 +1124,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: hih7 webtech pvt ltd (HVFEBCENV9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/maxcon8/Downloads/MyEchain/MyEchain/FacebookSDK,
@@ -1170,7 +1152,7 @@
 				INFOPLIST_FILE = "MyEchain/MyEchain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cd468976-150f-401a-8da4-a53ccfcab21a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1181,7 +1163,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: hih7 webtech pvt ltd (HVFEBCENV9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/maxcon8/Downloads/MyEchain/MyEchain/FacebookSDK,
@@ -1209,7 +1191,7 @@
 				INFOPLIST_FILE = "MyEchain/MyEchain-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cd468976-150f-401a-8da4-a53ccfcab21a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

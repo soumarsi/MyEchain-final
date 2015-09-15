@@ -9,7 +9,7 @@
 #import "QTAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "QTUpgradeViewController.h"
-#import <Crashlytics/Crashlytics.h>
+
 
 @implementation QTAppDelegate
 
@@ -20,7 +20,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [Crashlytics startWithAPIKey:@"8224639480744f62af73cb003d2596176c9e35ce"];
+  
     
     //-- Set Notification
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])

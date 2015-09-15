@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "QTfooterTab.h"
 #import "QTLoginViewController.h"
-@interface QTprofileViewController : UIViewController<UIImagePickerControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface QTprofileViewController : UIViewController<UIImagePickerControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate,UINavigationControllerDelegate>
 {
     
     UIView *mainview,*headview,*sview,*blackview1,*lockview1;

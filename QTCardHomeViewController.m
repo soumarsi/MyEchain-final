@@ -569,7 +569,7 @@
     
     NSError *error = nil;
     
-    NSData *swipedata = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.esolz.co.in/lab1/Web/myEchain/Iosapp/insert_cards.php?id=%@&data=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"id"],[jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]options:NSDataReadingUncached error:&error];
+    NSData *swipedata = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@insert_cards.php?id=%@&data=%@",APPS_DOMAIN_URL,[[NSUserDefaults standardUserDefaults]objectForKey:@"id"],[jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]options:NSDataReadingUncached error:&error];
     
     NSString *swipestring = [[NSString alloc]initWithData:swipedata encoding:NSUTF8StringEncoding];
     
@@ -577,9 +577,7 @@
     {
         
     }
-    
     //
-    
 }
 
 - (void)closeView {
